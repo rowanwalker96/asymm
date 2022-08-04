@@ -1,0 +1,48 @@
+integrator              = md
+dt                      = 0.001
+nsteps                  = 250000 ; 250ps
+nstxout                 = 500
+nstvout                 = 50000
+nstfout                 = 50000
+nstcalcenergy           = 100
+nstenergy               = 50000
+nstlog                  = 5000
+;
+cutoff-scheme           = Verlet
+nstlist                 = 1
+rlist                   = 1.2
+coulombtype             = pme
+rcoulomb                = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+;
+tcoupl                  = V-rescale
+tc-grps                 = WALL PRO2
+tau_t                   = 0.1 0.1 
+ref_t                   = 0 300
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+;
+nstcomm                 = 100
+comm_mode               = linear
+comm_grps               = WALL PRO2
+;
+gen-vel                 = yes
+gen-temp                = 300
+gen-seed                = -1
+;
+refcoord_scaling        = com
+pbc                     = xy
+ewald-geometry          = 3dc
+ewald_rtol              = 1e-6
+;
+nwall               = 2
+wall-atomtype       = OW OW
+wall-type           = 9-3
+wall-density        = 33.3 9.5
+wall-ewald-zfac     = 2
+freezegrps          = WALL
+freezedim           = Y Y Y

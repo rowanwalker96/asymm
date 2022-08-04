@@ -1,0 +1,59 @@
+integrator              = md
+dt                      = 0.001
+nsteps                  = 10000000 ; 20ns
+nstxtcout               = 200
+nstvout                 = 5000000
+nstfout                 = 0
+nstcalcenergy           = 100
+nstenergy               = 5000000
+nstlog                  = 5000000
+;
+cutoff-scheme           = Verlet
+nstlist                 = 10
+rlist                   = 1.2
+coulombtype             = pme
+rcoulomb                = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+;
+tcoupl                  = nose-hoover
+tc_grps                 = PRO2 WALL
+tau_t                   = 1.0 1.0
+ref_t                   = 300 0
+;
+;pcoupl                  = Parrinello-Rahman
+;pcoupltype              = semiisotropic
+;tau_p                   = 2.0
+;compressibility         = 0 1e-4; check
+;ref_p                   = 1.0 1.0
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+;
+nstcomm                 = 100
+comm_mode               = linear
+comm_grps               = PRO2 WALL
+;
+gen-vel                 = no
+continuation            = yes
+gen-temp                = 300
+gen-seed                = -1
+;
+refcoord_scaling        = com
+periodic-molecules      = yes
+
+pbc                     = xy
+freeze-grps             = WALL
+freezedim               = Y Y Y
+ewald-geometry          = 3dc
+ewald_rtol              = 1e-6
+fourierspacing          = 0.1
+pme-order               = 6
+
+nwall               = 2
+wall-atomtype       = OW OW
+wall-type           = 9-3
+wall-density        = 33.3 9.5
+wall-ewald-zfac     = 2

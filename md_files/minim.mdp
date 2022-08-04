@@ -1,0 +1,27 @@
+integrator              = steep
+emtol                   = 1000.0
+nsteps                  = 5000
+nstlist                 = 10
+cutoff-scheme           = Verlet
+rlist                   = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+coulombtype             = pme
+rcoulomb                = 1.2
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+;
+pbc                     = xy
+ewald-geometry          = 3dc
+ewald_rtol              = 1e-6
+;
+nwall               = 2
+wall-atomtype       = OW OW
+wall-type           = 9-3
+wall-density        = 33.3 9.5
+wall-ewald-zfac     = 2
+freezegrps          = WALL
+freezedim           = Y Y Y
